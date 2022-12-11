@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ecommerce/common_Function/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -19,10 +21,11 @@ class _OrderpageState extends State<Orderpage> {
 
     String getlink = "${myurl}all/orders";
     var response = await http.get(Uri.parse(getlink));
-    sharedPreferences.getString('token');
-    //print("Shareprefereance code: ${sharedPreferences.getString('token')}");
+    var gettoken = sharedPreferences.getString('token');
+    print("Shareprefereance code: ${sharedPreferences.getString('token')}");
 
-    print(response.body);
+    var data = jsonDecode(response.body);
+    print(data);
   }
 
   @override
