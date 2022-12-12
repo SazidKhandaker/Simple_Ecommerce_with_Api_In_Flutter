@@ -1,4 +1,5 @@
 import 'package:ecommerce/Provider/orderprovider.dart';
+import 'package:ecommerce/Provider/productprovider.dart';
 import 'package:ecommerce/SplaseScreen/splashsreen.dart';
 import 'package:ecommerce/homepage.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: ((context) => Orderprovider())),
+        ChangeNotifierProvider(create: ((context) => Productprovider())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

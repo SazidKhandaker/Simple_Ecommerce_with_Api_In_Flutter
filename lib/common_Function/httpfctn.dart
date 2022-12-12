@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ecommerce/Modelclass/productmodelclass.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/Modelclass/Orderalll.dart';
 import 'package:ecommerce/common_Function/common.dart';
@@ -33,5 +34,25 @@ class httpclass {
     }
 
     return myorderlist;
+  }
+
+  static Future productclassdata() async {
+    ProductModelclass productModelclass = ProductModelclass();
+    List<ProductModelclass> productlist = [];
+
+    String getlink = "${myurl}products";
+
+    var response = await http.get(Uri.parse(getlink),
+        headers: await httpclass.tokenfctn());
+    var data = jsonDecode(response.body);
+    print("Data paisi-${data}");
+
+    for (var i in data) {
+      productModelclass = ProductModelclass.fromJson(i);
+
+      productlist.add(productModelclass);
+    }
+
+    return productlist;
   }
 }
