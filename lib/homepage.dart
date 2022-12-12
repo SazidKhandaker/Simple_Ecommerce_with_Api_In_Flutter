@@ -45,10 +45,14 @@ class _HomepageState extends State<Homepage> {
             child: Padding(
               padding: EdgeInsets.all(4.0),
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.height * 0.15,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://cdn-icons-png.flaticon.com/512/2922/2922510.png"),
+                        fit: BoxFit.cover),
                     gradient: LinearGradient(colors: [
                       Colors.red.shade300,
                       Colors.purple.shade200,
@@ -56,7 +60,11 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
           ),
-          title: Text("MY orderpage"),
+          title: cuerrrentindex == 0
+              ? Text("Orderpage")
+              : cuerrrentindex == 1
+                  ? Text("ProductList ")
+                  : Text("CategoryList "),
           titleTextStyle: TextStyle(
               color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           centerTitle: true,
