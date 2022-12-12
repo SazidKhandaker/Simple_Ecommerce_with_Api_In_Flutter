@@ -1,5 +1,7 @@
 import 'package:ecommerce/Profile/profile.dart';
+import 'package:ecommerce/orderpage/category.dart';
 import 'package:ecommerce/orderpage/orderpager.dart';
+import 'package:ecommerce/orderpage/productlist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -19,6 +21,14 @@ class _HomepageState extends State<Homepage> {
   fctn() {
     setState(() {
       _globalKey.currentState?.openDrawer();
+    });
+  }
+
+  int cuerrrentindex = 0;
+  List selectindex = [Orderpage(), Productlist(), Categorylist()];
+  selectfctn(index) {
+    setState(() {
+      cuerrrentindex = index;
     });
   }
 
@@ -51,7 +61,26 @@ class _HomepageState extends State<Homepage> {
               color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           centerTitle: true,
         ),
-        body: Orderpage(),
+        bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: 'Order',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag_outlined),
+              label: 'Product',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.category),
+              label: 'Category',
+            ),
+          ],
+          onTap: selectfctn,
+          selectedItemColor: Colors.amber[800],
+          currentIndex: cuerrrentindex,
+        ),
+        body: selectindex[cuerrrentindex],
       ),
     );
   }
